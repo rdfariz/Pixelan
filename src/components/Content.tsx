@@ -193,7 +193,7 @@ const Pricing: React.FC = () => {
   }
 
   return (
-    <section className="relative text-gray-800 font-sans rounded-none py-4 md:py-12">
+    <section className="relative text-gray-800 font-sans rounded-none sm:py-4 md:py-12">
       <div id="hero" className="max-w-screen-md px-4 md:px-8 mx-auto text-center mb-4">
         <motion.div
           className="w-full flex items-center justify-center py-4 md:py-8 relative"
@@ -203,7 +203,7 @@ const Pricing: React.FC = () => {
         >
           <section
             id="hero"
-            className="h-full flex-1 flex items-center py-16 md:py-0 relative z-10 mx-auto"
+            className="h-full flex-1 flex items-center py-8 md:py-0 relative z-10 mx-auto"
           >
             <div className="text-center mx-auto w-full">
               <h1 className="text-title-logo text-8xl">PIXELAN</h1>
