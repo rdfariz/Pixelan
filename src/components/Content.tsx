@@ -124,7 +124,8 @@ const Pricing: React.FC = () => {
   const [activeType, setActiveType] = useState<PricingType>(pricingTypes[0])
   const processRef = useRef<HTMLDivElement>(null)
 
-  const linkContact = "https://wa.me/6285155494320?text=Hello%20Pixelan%2C%20I%E2%80%99m%20interested%20in%20your%20website%20development%20services.%20Could%20you%20please%20provide%20more%20details%20and%20how%20the%20process%20works%3F%20Thank%20you%21"
+  const wa = 6285155494320
+  const linkContact = `https://wa.me/${wa}?text=Hello%20Pixelan%2C%20I%E2%80%99m%20interested%20in%20your%20website%20development%20services.%20Could%20you%20please%20provide%20more%20details%20and%20how%20the%20process%20works%3F%20Thank%20you%21`
   const words = [
     'Digital',
     'Creative',
@@ -212,7 +213,7 @@ const Pricing: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-block font-bold text-4xl md:text-5xl"
+                  className="inline-block font-bold text-3xl sm:text-4xl md:text-5xl"
                 >
                   Build your{' '}
                   <span className="text-blue-600 border-r-2 border-blue-600 text-title-logo text-5xl md:text-7xl">
