@@ -75,12 +75,12 @@ const pricingTypes: PricingType[] = [
   {
     id: 'international',
     label: 'International',
-    price: '$299',
+    price: '$183',
     description: '1-2 weeks delivery. Includes free hosting & domain via Vercel.',
     features: [
       { name: 'Free hosting & domain (Vercel)', included: true },
       { name: 'Custom domain via Hostinger', included: true },
-      { name: 'Hostinger account (+$59/year if managed by us)', included: true },
+      { name: 'Hostinger account (+$38/year if managed by us)', included: true },
       { name: 'Responsive website', included: true },
       { name: 'Assets provided by client (logo, photos, videos, etc)', included: true },
       { name: 'Google Maps & Social Media Integration', included: true },
