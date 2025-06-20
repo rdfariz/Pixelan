@@ -124,7 +124,7 @@ const Pricing: React.FC = () => {
   const [activeType, setActiveType] = useState<PricingType>(pricingTypes[0])
   const processRef = useRef<HTMLDivElement>(null)
 
-  const wa = 6285155494320
+  const wa = 6285183113700
   const linkContact = `https://wa.me/${wa}?text=Hello%20Pixelan%2C%20I%E2%80%99m%20interested%20in%20your%20website%20development%20services.%20Could%20you%20please%20provide%20more%20details%20and%20how%20the%20process%20works%3F%20Thank%20you%21`
   const words = [
     'Digital',
