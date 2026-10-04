@@ -2,14 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-accent text-paper;
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
-.text-title-logo {
-  font-family: "Jersey 10", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1600px] px-5 md:px-10;
+  }
+
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em];
+  }
+}
+
+/* ── Preloader (works before JavaScript loads) ─────────────────────── */
+html:has(#preloader:not(.is-leaving)) {
+  overflow: hidden;
+}
+
+.preloader.is-leaving {
+  pointer-events: none;
+}
+
+.preloader-cell {
+  transition: opacity 0.01s linear;
+}
+.is-leaving .preloader-cell {
+  opacity: 0;
+}
+
+.preloader-ui {
+  transition:
+    opacity 0.25s ease,
+    transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.is-leaving .preloader-ui {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.preloader-pixel {
+  opacity: 0;
+  transform: scale(0);
+  animation: px-pop 0.36s steps(3) forwards;
+}
+@keyframes px-pop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.preloader-blink {
+  animation: px-blink 1s steps(1) infinite;
+}
+@keyframes px-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-pixel {
+    animation-duration: 0.01s;
+    animation-delay: 0s !important;
+  }
+  .preloader-cell {
+    transition-delay: 0s !important;
+  }
+}
+
+@layer utilities {
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  /* Pixel cells that light up instantly on hover and fade out slowly */
+  .pixel-cell {
+    transition: background-color 1.1s ease-out;
+  }
+  .pixel-cell:hover {
+    background-color: theme('colors.lime') !important;
+    transition-duration: 0s;
+  }
 }
