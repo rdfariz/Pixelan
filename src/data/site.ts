@@ -6,7 +6,7 @@
 export const site = {
   name: 'Pixelan Studio',
   url: 'https://pixelan.my.id/',
-  whatsapp: '6285183113700',
+  whatsapp: '6285155494320',
   timezone: 'Asia/Jakarta',
   timezoneLabel: 'WIB',
 }
