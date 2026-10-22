@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Brosur Pixelan Studio</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Jersey+10&display=block" rel="stylesheet" />
+    <style>
+      /* One brochure page = 1600×1200 (4:3). Printing puts each on its own PDF page. */
+      @page { size: 1600px 1200px; margin: 0; }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: #D9D8D1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { font-family: Geist, system-ui, sans-serif; color: #0C0C0E; -webkit-font-smoothing: antialiased; }
+      .sheet { width: 1600px; height: 1200px; position: relative; overflow: hidden; break-after: page; }
+      .sheet:last-child { break-after: auto; }
+      /* Viewer (no ?page / ?pages): pages stacked and scaled to the screen width. */
+      .viewer { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 16px; }
+      .viewer .frame { width: min(1600px, 100%); aspect-ratio: 4 / 3; overflow: hidden; box-shadow: 0 20px 50px -30px rgba(12,12,14,0.5); }
+      @media print { html, body { background: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

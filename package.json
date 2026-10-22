@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "brosur": "node scripts/brochure.mjs",
+    "brosur:dev": "node scripts/brochure.mjs --dev"
   },
   "dependencies": {
     "framer-motion": "^12.15.0",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
@@ -26,6 +29,7 @@
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
     "postcss": "^8.4.35",
+    "qrcode": "^1.5.4",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
