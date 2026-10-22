@@ -15,9 +15,9 @@ const waId = composeMessage({ greeting: 'Halo Pixelan Studio! 👋', service: 'L
 
 const en = {
   seo: {
-    title: 'Pixelan Studio — Websites, Apps, AI Video Ads, Game Joki & Mentoring',
+    title: 'Pixelan Studio — All-in-one digital studio from Indonesia',
     description:
-      'Pixelan Studio builds websites & apps, creates AI video ads (Veo) and music videos, offers game joki for Genshin, Valorant, Mobile Legends & Aniimo, plus 1-on-1 tech and psychology mentoring. Free consultation.',
+      'Pixelan Studio is an all-in-one digital studio from Indonesia. We build, create and mentor: websites & apps, video, game services and 1-on-1 mentoring, priced around your project. Free consultation.',
   },
   nav: {
     links: { services: 'Services', work: 'Work', joki: 'Joki', pricing: 'Pricing', faq: 'FAQ', contact: 'Contact' },
@@ -234,7 +234,7 @@ const en = {
       },
       {
         q: 'Can you make AI video ads?',
-        a: 'Yes. We produce short-form video ads with generative AI (Google Veo) — perfect for Reels, TikTok and YouTube Shorts — and we also edit music videos for VTubers and artists.',
+        a: 'Yes. We produce short-form video ads with generative AI (Google Veo) — perfect for Reels, TikTok and YouTube Shorts — and we also edit music videos for musicians and creators.',
       },
       {
         q: 'What is game joki?',
@@ -275,9 +275,9 @@ export type Copy = typeof en
 
 const id: Copy = {
   seo: {
-    title: 'Pixelan Studio — Jasa Website, Aplikasi, Iklan Video AI, Joki Game & Mentoring',
+    title: 'Pixelan Studio — Studio digital serba bisa dari Indonesia',
     description:
-      'Pixelan Studio: jasa pembuatan website & aplikasi, iklan video AI (Veo), editing video musik, joki game Genshin, Valorant, Mobile Legends & Aniimo, serta mentoring tech & psikologi 1-on-1. Konsultasi gratis.',
+      'Pixelan Studio adalah studio digital serba bisa dari Indonesia. Kami membangun, berkarya, dan membimbing: website & aplikasi, video, layanan game, dan mentoring 1-on-1, dengan harga menyesuaikan proyekmu. Konsultasi gratis.',
   },
   nav: {
     links: { services: 'Layanan', work: 'Karya', joki: 'Joki', pricing: 'Harga', faq: 'FAQ', contact: 'Kontak' },
@@ -491,7 +491,7 @@ const id: Copy = {
       },
       {
         q: 'Bisa bikin iklan video pakai AI?',
-        a: 'Bisa. Kami membuat iklan video pendek dengan generative AI (Google Veo) — cocok untuk Reels, TikTok, dan YouTube Shorts — dan juga mengedit video musik untuk VTuber dan musisi.',
+        a: 'Bisa. Kami membuat iklan video pendek dengan generative AI (Google Veo) — cocok untuk Reels, TikTok, dan YouTube Shorts — dan juga mengedit video musik untuk musisi dan kreator.',
       },
       {
         q: 'Joki game itu apa?',

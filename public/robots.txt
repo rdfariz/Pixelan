@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Portfolio screenshots stay out of image search: results are about Pixelan Studio itself.
+Disallow: /projects/
 
 Sitemap: https://pixelan.my.id/sitemap.xml

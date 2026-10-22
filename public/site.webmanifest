@@ -1,7 +1,7 @@
 {
   "name": "Pixelan Studio",
   "short_name": "Pixelan",
-  "description": "All-in-one digital studio: websites & apps, AI video ads, video editing, game joki and mentoring.",
+  "description": "All-in-one digital studio from Indonesia: websites & apps, video, game services and 1-on-1 mentoring.",
   "start_url": "/",
   "icons": [
     { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },

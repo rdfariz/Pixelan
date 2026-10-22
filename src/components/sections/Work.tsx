@@ -3,7 +3,7 @@ import { AnimatePresence, LayoutGroup, motion, useMotionValueEvent, useScroll, u
 import { projects, type Category } from '../../data/projects'
 import { useLang } from '../../i18n/context'
 import { cn } from '../../lib/motion'
-import { useIsomorphicLayoutEffect } from '../../lib/ready'
+import { useHydrated, useIsomorphicLayoutEffect } from '../../lib/ready'
 import PixelIcon from '../ui/PixelIcon'
 import { RevealLines, SectionLabel } from '../ui/Text'
 import PlaylistCard from '../work/PlaylistCard'
@@ -29,8 +29,10 @@ export default function Work() {
   const [playing, setPlaying] = useState<PlayRequest | null>(null)
   const closePlayer = useCallback(() => setPlaying(null), [])
 
+  // The cards are drawn in the browser only: project names stay out of the prerendered (indexed) HTML.
+  const hydrated = useHydrated()
   const filters: Filter[] = ['all', ...ORDER.filter((c) => showcase.some((p) => p.category === c))]
-  const list = filter === 'all' ? showcase : showcase.filter((p) => p.category === filter)
+  const list = !hydrated ? [] : filter === 'all' ? showcase : showcase.filter((p) => p.category === filter)
   const countFor = (f: Filter) => (f === 'all' ? showcase.length : showcase.filter((p) => p.category === f).length)
 
   const pinRef = useRef<HTMLDivElement>(null)
@@ -75,7 +77,7 @@ export default function Work() {
   const pinned = distance > 0
 
   return (
-    <section id="work" className="bg-ink text-paper">
+    <section id="work" data-nosnippet className="bg-ink text-paper">
       <div className="container-x pt-24 md:pt-36">
         <div className="grid gap-8 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">

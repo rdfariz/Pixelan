@@ -4,6 +4,7 @@ import { projects } from '../../data/projects'
 import { waLink } from '../../data/site'
 import { useLang } from '../../i18n/context'
 import { EASE_OUT } from '../../lib/motion'
+import { useHydrated } from '../../lib/ready'
 import PixelButton from '../ui/PixelButton'
 import { RevealLines, SectionLabel } from '../ui/Text'
 import ChannelCard from '../work/ChannelCard'
@@ -18,11 +19,13 @@ export default function Alumni() {
   const [playing, setPlaying] = useState<PlayRequest | null>(null)
   const closePlayer = useCallback(() => setPlaying(null), [])
   const mentor = t.services.list.find((s) => s.id === 'mentor')
+  // Like the work carousel: the alumni cards are drawn in the browser only, never in the indexed HTML.
+  const hydrated = useHydrated()
 
   if (alumni.length === 0) return null
 
   return (
-    <section id="alumni" className="bg-paper py-24 md:py-36">
+    <section id="alumni" data-nosnippet className="bg-paper py-24 md:py-36">
       <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <SectionLabel index="03" className="text-ink/60">
@@ -42,7 +45,7 @@ export default function Alumni() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:col-span-8">
-          {alumni.map((project, i) => (
+          {hydrated && alumni.map((project, i) => (
             <motion.article
               key={project.slug}
               initial={{ opacity: 0, y: 40 }}
