@@ -29,15 +29,24 @@ const C = {
   line: 'rgba(12,12,14,0.14)',
   muted: 'rgba(12,12,14,0.58)',
 }
+/**
+ * Print type with more character than the site's Geist: Bricolage Grotesque for
+ * titles, Manrope for text, Space Mono for labels; Jersey 10 stays for the pixel numbers.
+ */
 const F = {
-  sans: 'Geist, system-ui, sans-serif',
-  mono: '"Geist Mono", ui-monospace, monospace',
+  display: '"Bricolage Grotesque", system-ui, sans-serif',
+  sans: 'Manrope, system-ui, sans-serif',
+  mono: '"Space Mono", ui-monospace, monospace',
   pixel: '"Jersey 10", ui-monospace, monospace',
 }
 const PAD = 88
 const FOOT = 96
 const DOMAIN = site.url.replace(/^https?:\/\//, '').replace(/\/$/, '')
-const WA_DISPLAY = `+${site.whatsapp.slice(0, 2)} ${site.whatsapp.slice(2, 5)}-${site.whatsapp.slice(5, 9)}-${site.whatsapp.slice(9)}`
+
+// The brochure points to the website only (no phone number): these lines of the site copy name WhatsApp.
+t.pricing.cta = `Minta penawaran di ${DOMAIN}`
+t.psych.steps[0] = { title: 'Sapa kami', description: `Lewat ${DOMAIN} — ceritakan sedikit apa yang sedang kamu pikirkan, tanpa tekanan.` }
+t.joki.points = t.joki.points.map((p) => (/whatsapp/i.test(p) ? 'Kabar progres rutin' : p))
 
 export interface PageProps {
   n: number
@@ -72,7 +81,7 @@ function Label({ index, children, color = C.muted }: { index?: string; children:
 /** A big two-line title: the second line quieter, like the site's section titles. */
 function Title({ lines, size = 86, color = C.ink, quiet = 'rgba(12,12,14,0.42)', align = 'left' }: { lines: string[]; size?: number; color?: string; quiet?: string; align?: CSSProperties['textAlign'] }) {
   return (
-    <h1 style={{ margin: 0, fontFamily: F.sans, fontSize: size, fontWeight: 500, lineHeight: 0.94, letterSpacing: '-0.05em', textAlign: align }}>
+    <h1 style={{ margin: 0, fontFamily: F.display, fontSize: size, fontWeight: 600, lineHeight: 0.96, letterSpacing: '-0.03em', textAlign: align }}>
       {lines.map((l, i) => (
         <span key={l} style={{ display: 'block', color: i === lines.length - 1 && lines.length > 1 ? quiet : color }}>
           {l}
@@ -223,7 +232,7 @@ function Services({ n, total }: PageProps) {
                 <span style={{ fontFamily: F.pixel, fontSize: 48, lineHeight: 1, color: dark ? C.lime : C.accent }}>{String(i + 1).padStart(2, '0')}</span>
                 <span style={{ fontFamily: F.mono, fontSize: 16, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6 }}>{s.subtitle}</span>
               </div>
-              <div style={{ fontSize: 60, fontWeight: 500, letterSpacing: '-0.05em', lineHeight: 1 }}>{s.title}</div>
+              <div style={{ fontFamily: F.display, fontSize: 60, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1 }}>{s.title}</div>
               <div style={{ fontSize: 21, lineHeight: 1.45, opacity: 0.72 }}>{s.description}</div>
               <div style={{ marginTop: 'auto', paddingTop: 22, borderTop: `1.5px solid ${dark ? 'rgba(238,237,231,0.16)' : C.line}` }}>
                 <Bullets items={s.items} color={dark ? C.lime : C.accent} size={20} />
@@ -247,7 +256,7 @@ function Psych({ n, total }: PageProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
             <div style={{ width: 76, height: 76, background: C.lime, color: C.ink, display: 'grid', placeItems: 'center', fontFamily: F.pixel, fontSize: 52, lineHeight: 1 }}>R</div>
             <div>
-              <div style={{ fontSize: 40, fontWeight: 500, letterSpacing: '-0.03em' }}>{p.name}</div>
+              <div style={{ fontFamily: F.display, fontSize: 40, fontWeight: 600, letterSpacing: '-0.03em' }}>{p.name}</div>
               <div style={{ fontFamily: F.mono, fontSize: 16, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.6 }}>{p.role}</div>
             </div>
           </div>
@@ -365,7 +374,7 @@ function Pricing({ n, total }: PageProps) {
 
 function Process({ n, total }: PageProps) {
   const steps: [string, string][] = [
-    ['Ngobrol dulu', 'Ceritakan ide atau masalahmu lewat WhatsApp. Konsultasi pertama gratis.'],
+    ['Ngobrol dulu', `Ceritakan ide atau masalahmu lewat ${DOMAIN}. Konsultasi pertama gratis.`],
     ['Penawaran jelas', 'Rincian harga dan timeline kami kirim sebelum pengerjaan dimulai. Tanpa kejutan.'],
     ['Dikerjakan', 'Kami kerjakan sesuai scope, dengan kabar progres yang rutin.'],
     ['Serah terima', 'Siap dipakai. Untuk website, kami bantu hosting dan setup custom domain.'],
@@ -426,9 +435,8 @@ function Faq({ n, total }: PageProps) {
 
 /* ------------------------------------------------------------------ 09 */
 
-const WA = `https://wa.me/${site.whatsapp}`
 const QR = (() => {
-  const m = QRCode.create(WA, { errorCorrectionLevel: 'M' }).modules
+  const m = QRCode.create(site.url, { errorCorrectionLevel: 'M' }).modules
   return { size: m.size, on: (r: number, c: number) => Boolean(m.get(r, c)) }
 })()
 
@@ -457,27 +465,18 @@ function Contact({ n, total }: PageProps) {
           <div style={{ marginTop: 28 }}>
             <Title lines={['Punya project?', 'Yuk ngobrol.']} size={110} color={C.paper} quiet={C.lime} />
           </div>
-          <p style={{ margin: '30px 0 0', maxWidth: 560, fontSize: 24, lineHeight: 1.5, color: 'rgba(238,237,231,0.7)' }}>
-            Ceritakan idemu — konsultasi pertama gratis dan tanpa komitmen. Kami balas di jam kerja: {t.contact.hours} WIB.
+          <p style={{ margin: '30px 0 0', maxWidth: 580, fontSize: 24, lineHeight: 1.5, color: 'rgba(238,237,231,0.7)' }}>
+            Ceritakan idemu — konsultasi pertama gratis dan tanpa komitmen. Semua layanan dan cara menghubungi kami ada di website.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 40 }}>
-            {(
-              [
-                ['WhatsApp', WA_DISPLAY],
-                ['Website', DOMAIN],
-              ] as [string, string][]
-            ).map(([k, v]) => (
-              <div key={k} style={{ display: 'flex', alignItems: 'baseline', gap: 22 }}>
-                <span style={{ width: 150, fontFamily: F.mono, fontSize: 17, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(238,237,231,0.55)' }}>{k}</span>
-                <span style={{ fontSize: 30, fontWeight: 500, letterSpacing: '-0.01em' }}>{v}</span>
-              </div>
-            ))}
+          <div style={{ marginTop: 40 }}>
+            <div style={{ fontFamily: F.mono, fontSize: 17, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(238,237,231,0.55)' }}>Website</div>
+            <div style={{ fontFamily: F.display, fontSize: 52, fontWeight: 600, letterSpacing: '-0.03em', marginTop: 6 }}>{DOMAIN}</div>
           </div>
         </div>
         <div style={{ padding: 26, background: C.paper50, color: C.ink, boxShadow: `12px 12px 0 ${C.accent}`, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Qr size={330} />
-          <div style={{ fontFamily: F.mono, fontSize: 16, letterSpacing: '0.14em', textTransform: 'uppercase', marginTop: 18, color: C.muted }}>Pindai untuk chat</div>
-          <div style={{ marginTop: 14, width: '100%', padding: '16px 0', background: C.lime, textAlign: 'center', fontSize: 22, fontWeight: 600 }}>{t.contact.chat}</div>
+          <div style={{ fontFamily: F.mono, fontSize: 16, letterSpacing: '0.14em', textTransform: 'uppercase', marginTop: 18, color: C.muted }}>Pindai untuk berkunjung</div>
+          <div style={{ marginTop: 14, width: '100%', padding: '16px 0', background: C.lime, textAlign: 'center', fontSize: 22, fontWeight: 700 }}>Kunjungi {DOMAIN}</div>
         </div>
       </div>
       <Footer n={n} total={total} dark />
