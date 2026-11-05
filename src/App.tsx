@@ -3,7 +3,7 @@ import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Preloader from './components/Preloader'
 import Alumni from './components/sections/Alumni'
-import Clients from './components/sections/Clients'
+import Capabilities from './components/sections/Capabilities'
 import Contact from './components/sections/Contact'
 import Faq from './components/sections/Faq'
 import Hero from './components/sections/Hero'
@@ -11,7 +11,6 @@ import Joki from './components/sections/Joki'
 import Pricing from './components/sections/Pricing'
 import Psychology from './components/sections/Psychology'
 import Services from './components/sections/Services'
-import Work from './components/sections/Work'
 import LangProvider from './i18n/LangProvider'
 import { useHashNavigation } from './lib/hashNavigation'
 import { ReadyContext } from './lib/ready'
@@ -32,9 +31,9 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
-            <Clients />
             <Services />
-            <Work />
+            {/* <Work /> disembunyikan sementara, lihat components/sections/Work.tsx */}
+            <Capabilities />
             <Alumni />
             <Psychology />
             <Joki />

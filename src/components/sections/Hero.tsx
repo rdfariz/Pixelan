@@ -46,7 +46,7 @@ export default function Hero() {
             <PixelButton href={waLink(t.services.list[0].message)} external>
               {t.hero.ctaProject}
             </PixelButton>
-            <PixelButton href="#work" variant="ghost" icon="arrowDown">
+            <PixelButton href="#capabilities" variant="ghost" icon="arrowDown">
               {t.hero.ctaWork}
             </PixelButton>
           </motion.div>

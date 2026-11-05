@@ -13,4 +13,4 @@ export const site = {
 
 export const waLink = (message: string) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`
 
-export const sectionIds = ['services', 'work', 'joki', 'pricing', 'faq', 'contact'] as const
+export const sectionIds = ['services', 'capabilities', 'joki', 'pricing', 'faq', 'contact'] as const

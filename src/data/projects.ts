@@ -1,7 +1,7 @@
 /**
  * ─────────────────────────────────────────────────────────────
- *  PROJECTS & CLIENTS — satu-satunya file yang perlu diedit
- *  untuk menambah showcase project dan daftar client.
+ *  PROJECTS — satu-satunya file yang perlu diedit
+ *  untuk menambah showcase project.
  * ─────────────────────────────────────────────────────────────
  *
  *  Ada 4 jenis project (`kind`):
@@ -206,15 +206,6 @@ export const projects: Project[] = [
     ],
   },
 ]
-
-export interface Client {
-  name: string
-  logo?: string
-  url?: string
-}
-
-/** Contoh: { name: 'Kopi Senja', logo: '/clients/kopi-senja.svg', url: 'https://...' } */
-export const clients: Client[] = []
 
 /** mq = 320px list thumb, maxres = 1280px, oar = full-res vertical (Shorts) */
 export const youtubeThumb = (id: string, quality: 'mq' | 'hq' | 'maxres' | 'oar' = 'hq') =>
